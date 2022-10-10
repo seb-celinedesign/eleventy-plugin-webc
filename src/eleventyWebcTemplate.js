@@ -2,6 +2,7 @@ const path = require("path");
 
 const { EleventyRenderPlugin } = require("@11ty/eleventy");
 const EleventyRenderManager = EleventyRenderPlugin.RenderManager;
+const Image = require("@11ty/eleventy-img");
 
 const CodeManager = require("./codeManager.js");
 const WebCIncremental = require("./incremental.js");
@@ -93,6 +94,8 @@ module.exports = function(eleventyConfig, options = {}) {
 			page.setHelper("getJS", function(url, bucket) {
 				return getJs(url, bucket);
 			});
+
+			page.setHelper("getImage", Image);
 
 			page.setTransform("11ty", async function(content) {
 				let syntax = this["11ty:type"];
